@@ -28,7 +28,7 @@ const App = () => {
       text: todo,
       completed: false,
     };
-    setTodos([...todos].concat(newTodo));
+    todo && setTodos([...todos].concat(newTodo));
     setTodo("");
   }
 
@@ -82,6 +82,7 @@ const App = () => {
               <input
                 type="text"
                 onChange={(e) => setEditingText(e.target.value)}
+                defaultValue={todo.text}
               />
             ) : (
               <div>{todo.text}</div>
@@ -91,7 +92,8 @@ const App = () => {
             {todo.id === todoEditing ? (
               <button onClick={() => submitEdits(todo.id)}>Submit Edits</button>
             ) : (
-              <button onClick={() => setTodoEditing(todo.id)}>Edit</button>
+              <button onClick={() => {setTodoEditing(todo.id);
+              }}>Edit</button>
             )}
 
             <button onClick={() => deleteTodo(todo.id)}>Delete</button>
